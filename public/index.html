@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Athena CRM — Contacts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6">
+  <div class="max-w-5xl mx-auto">
+    <header class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-bold">Athena CRM — Contacts</h1>
+      <div>
+        <button id="refreshBtn" class="px-3 py-2 bg-indigo-600 rounded">Refresh</button>
+      </div>
+    </header>
+
+    <section class="mb-6 bg-slate-800 p-4 rounded">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+        <div>
+          <h2 class="font-semibold text-xl">Add Contact</h2>
+          <p class="text-slate-400 text-sm">Create a contact directly in the CRM.</p>
+        </div>
+        <button id="refreshBtn" class="px-3 py-2 bg-indigo-600 rounded">Refresh contacts</button>
+      </div>
+      <form id="addForm" class="grid grid-cols-1 sm:grid-cols-4 gap-2">
+        <input name="name" placeholder="Name" class="p-2 rounded bg-slate-700" />
+        <input name="email" placeholder="Email" class="p-2 rounded bg-slate-700" />
+        <input name="company" placeholder="Company" class="p-2 rounded bg-slate-700" />
+        <input name="phone" placeholder="Phone" class="p-2 rounded bg-slate-700" />
+        <div class="sm:col-span-4 mt-2 flex flex-wrap gap-2">
+          <button type="submit" class="px-3 py-2 bg-green-600 rounded">Add Contact</button>
+          <button id="showWebhookSection" type="button" class="px-3 py-2 bg-yellow-600 rounded">Open Webhook Panel</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="webhookSection" class="hidden mb-6 bg-slate-800 p-4 rounded">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="font-semibold text-xl">Webhook Lead Delivery</h2>
+          <p class="text-slate-400 text-sm">Send leads to the CRM from any webhook source using this web form.</p>
+        </div>
+        <button id="hideWebhookSection" type="button" class="px-3 py-2 bg-slate-600 rounded">Hide</button>
+      </div>
+      <form id="webhookForm" class="grid grid-cols-1 sm:grid-cols-4 gap-2">
+        <input name="fullName" placeholder="Full Name" class="p-2 rounded bg-slate-700" />
+        <input name="email_address" placeholder="Email" class="p-2 rounded bg-slate-700" />
+        <input name="company" placeholder="Company" class="p-2 rounded bg-slate-700" />
+        <input name="secret" placeholder="Webhook secret" class="p-2 rounded bg-slate-700" />
+        <div class="sm:col-span-4 mt-2 flex flex-wrap gap-2">
+          <button type="submit" class="px-3 py-2 bg-cyan-600 rounded">Send Webhook</button>
+          <button id="sendWebhookSample" type="button" class="px-3 py-2 bg-amber-600 rounded">Send Sample</button>
+        </div>
+      </form>
+      <div id="webhookStatus" class="mt-4 text-slate-300"></div>
+    </section>
+
+    <section class="bg-slate-800 p-4 rounded">
+      <h2 class="font-semibold mb-2">Contacts</h2>
+      <div id="contactsList" class="space-y-2"></div>
+    </section>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
